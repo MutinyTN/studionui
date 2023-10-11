@@ -1,38 +1,62 @@
-
-
-const navlist = "p-4  duration-200 rounded-sm hover:text-white bg-gradient-to-b  pb-6 pt-8 backdrop-blur-lg dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30"
+"use client";
+import { useState, useContext, useEffect, useRef } from 'react';
+import { motion } from "framer-motion";
+import { MousePositionContext } from '@/app/context/mouseContext';
 
 export default function Navbar() {
+    const {
+        handleMouseOver,
+        handleMouseLeave,
+        defaultStyle,
+    } = useContext(MousePositionContext);
 
+    const navlist = `p-4 w-fit relative duration-200  rounded-sm hover:font-semibold hover:bg-black/20 hover:text-white/70 bg-gradient-to-b  backdrop-blur-sm lg:static lg:bg-gray-200 `;
 
-    return <div className="w-full p-12 flex absolute text-3xl font-extralight  cursor-none">
-        <div className="w-1/3 ">
-            <ul className="flex space-x-12">
-                <li className={navlist}>
-                    Industrial
-                </li>
-                <li className={navlist}>
-                    Design
-                </li>
-                <li className={navlist}>
-                    Portfolio
-                </li>
-            </ul>
-        </div>
-        <div className="w-1/3 text-center">
-            <div className={navlist}>
-                núi
+    const customStyleForDesignLi = {
+        backgroundColor:'blue',
+        position: "absolute",
+        top: "-5px",
+        left: "0",
+        filter: "blur(5px)",
+        transform: 'translate(-50%, -50%)',
+        pointerEvents: 'none',
+    };
 
+    return (
+        <div className="w-full p-12 flex absolute text-3xl font-extralight ">
+            <div className="w-1/3 ">
+                <ul className="flex space-x-12">
+                    <li className={navlist}
+                        onMouseOver={(e) => handleMouseOver(e, customStyleForDesignLi)}
+                        onMouseLeave={handleMouseLeave}>
+                        Industrial
+                    </li>
+                    <li className={navlist}
+                        onMouseOver={(e) => handleMouseOver(e, customStyleForDesignLi)}
+                        onMouseLeave={handleMouseLeave}>
+                        Design
+                    </li>
+                    <li className={navlist}
+                        onMouseOver={(e) => handleMouseOver(e, customStyleForDesignLi)}
+                        onMouseLeave={handleMouseLeave}>
+                        Portfolio
+                    </li>
+                </ul>
             </div>
-        </div>
-        <div className="w-1/3 text-end">
-
-            <div className={navlist}>
-                About
-
+            <div className="w-1/3 flex justify-center text-center">
+                <div className={navlist}
+                    onMouseOver={(e) => handleMouseOver(e, customStyleForDesignLi)}
+                    onMouseLeave={handleMouseLeave}>
+                    núi
+                </div>
             </div>
-        </div>
-
-
-    </div>
+            <div className="w-1/3 flex justify-end text-end">
+                <div className={navlist}
+                    onMouseOver={(e) => handleMouseOver(e, customStyleForDesignLi)}
+                    onMouseLeave={handleMouseLeave}>
+                    About
+                </div>
+            </div>
+        </div >
+    );
 }

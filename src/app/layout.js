@@ -1,7 +1,7 @@
-import Mouse from './components/mouse'
 import Navbar from './components/navbar'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { MousePositionProvider } from '@/app/context/mouseContext';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,13 +16,11 @@ export default function RootLayout({ children }) {
 
     <html lang="en">
       <body className={inter.className}>
-        <Mouse>
-
+        <MousePositionProvider>
           <Navbar />
-
-
           {children}
-        </Mouse>
+        </MousePositionProvider>
+
       </body>
     </html>
 

@@ -1,16 +1,44 @@
 "use client"
 import Image from 'next/image'
+import { useState, useContext, useEffect, useRef } from 'react';
+import { MousePositionContext } from '@/app/context/mouseContext';
 
 export default function Home() {
+
+  const {
+    handleMouseOver,
+    handleMouseLeave,
+    defaultStyle,
+  } = useContext(MousePositionContext);
+
+  const mouseOverHandle = (event) => {
+    let desiredX, desiredY;
+
+    const target = event.currentTarget;
+    const rect = target.getBoundingClientRect();
+
+    desiredX = rect.width / 2; // center of the width
+    console.log(desiredX)
+    desiredY = rect.top + rect.height / 2; // center of the height
+
+    handleMouseOver(event, {})
+  }
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col space-y-12 items-center p-32">
+      <div className='' >
+        <Image
+          src="/cd-player.jpg"
+          href='/'
+          alt="Abrites Logo"
+          className=""
+          width={1000}
+          height={1000}
+          priority
+        />
 
 
-      <div className="relative flex place-items-center before:absolute mt-20 before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        núi
       </div>
 
-     
     </main>
   )
 }
