@@ -8,7 +8,7 @@ const defaultStyle = {
     width: '15px',
     height: '15px',
     borderRadius: '50%',
-    backgroundColor: 'blue',
+    backgroundColor: 'orange',
     position: 'fixed',
     filter: "blur(1px)",
     top: '20px',
@@ -43,7 +43,7 @@ const MousePositionProvider = ({ children }) => {
 
     const handleMouseOver = (event, customStyle = {}, customLocation = null) => {
         setIsSpecialHovering(true);
-
+        console.log(event.currentTarget.getBoundingClientRect())
         let desiredX, desiredY;
 
         if (customLocation) {
